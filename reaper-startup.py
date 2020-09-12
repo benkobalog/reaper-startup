@@ -1,4 +1,5 @@
 import sys
+import os
 
 drivers = {
     "asio":  ("0", "ASIO4ALL v2"),
@@ -9,8 +10,8 @@ selector = sys.argv[1]
 driver = drivers[selector]
 print("Setting config to " + str(driver))
 
-readFile = "C:\\Users\\Benko\\AppData\\Roaming\\REAPER\\REAPER.ini"
-writeFile = "C:\\Users\\Benko\\AppData\\Roaming\\REAPER\\REAPER.ini"
+userName = os.getlogin()
+reaperConfig = f"C:\\Users\\{userName}\\AppData\\Roaming\\REAPER\\REAPER.ini"
 
 def rewriteLine(line):
     if(line.startswith("asio_driver=")):
@@ -20,11 +21,11 @@ def rewriteLine(line):
     else:
         return line
 
-with open(readFile) as file:
+with open(reaperConfig) as file:
     allLines = [line.rstrip('\n') for line in file]
     updatedLines = list(map(rewriteLine, allLines))
 
-with open(writeFile, "w") as file:
+with open(reaperConfig, "w") as file:
     file.write("\n".join(updatedLines))
 
 import subprocess

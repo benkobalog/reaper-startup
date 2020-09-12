@@ -1,8 +1,4 @@
-
-
 import sys
-
-labels = ("asio_driver", "asio_driver_name")
 
 drivers = {
     "asio":  ("0", "ASIO4ALL v2"),

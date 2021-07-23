@@ -1,1 +1,1 @@
-python reaper-startup.py focusrite
+start pyw.exe reaper-startup.py
